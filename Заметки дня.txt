@@ -1,0 +1,3 @@
+\frac{\left(\left(\left(\left(\frac{\log x}{\log_{5}\left(x\right)}\right)-\left(\log_{3}\left(x\right)+\log_{5}\left(x\right)\right)\right)+\ln x\right)-\left(\log x-\log_{2}\left(x\right)\right)\right)}{\frac{\log_{5}\left(x\right)}{\log_{3}x-\log_{5}x}}\left\{x>0\right\}
+
+\left\{x\le0\right\}(((((((((((\sin(x)*\tan(x)-\tan(x))/(1/\sin(x)))*\sin(x))/(1/\sin(x)))^{3})/(1/\cos(x)))+(1/\tan(x)))-((1/\cos(x))*(((\cos(x)*((1/\tan(x))*\tan(x))+(1/\tan(x)))/\cos(x))*\cos(x))))+\cos(x))*(\cos(x)*(\cos(x)^{2}/(1/\tan(x)))))^{2}-(((((\cos(x)/\sin(x)-(1/\tan(x))^{3})^{2}+(1/\cos(x)))-((\sin(x)-\tan(x))/(\cos(x)-((1/\cos(x))-\sin(x)))))/(((1/\tan(x))*((1/\sin(x))/\cos(x)^{3}))*(1/\sin(x))))^{2}))
