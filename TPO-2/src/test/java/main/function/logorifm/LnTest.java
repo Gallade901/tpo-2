@@ -4,8 +4,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class LnTest {
     private static final double delta = 1e-5;
@@ -21,7 +20,9 @@ public class LnTest {
             "1.0, 0.0",
             "2.7182818285, 1.0",
             "5.0, 1.60944",
-            "52.0, 3.95124"
+            "52.0, 3.95124",
+            "2, 0.69314718056",
+            "0.5, -0.6931471805"
     })
     void lnValid(double x, double y) {
         double result = ln.calculate(x);

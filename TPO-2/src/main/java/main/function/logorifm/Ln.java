@@ -24,7 +24,6 @@ public class Ln implements BaseMathFunction {
             sum = sum + cal;
         }
         sum = 2 * sum;
-        System.out.println(i);
         return sum;
     }
 }

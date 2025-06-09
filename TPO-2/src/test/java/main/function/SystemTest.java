@@ -3,6 +3,7 @@ package main.function;
 import main.function.logorifm.*;
 import main.function.trigonomical.*;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
@@ -44,14 +45,32 @@ public class SystemTest {
     private static final ArrayList<Map> maps = new ArrayList<>();
     private static final Map<Double, Double> sinMap = new HashMap<>();
     private static final Map<Double, Double> cosMap = new HashMap<>();
-    private static final String prefix = "C:\\Users\\MSI\\Desktop\\reports\\ТПО\\lab-2\\TPO-2\\src\\main\\resources\\";
+    private static final Map<Double, Double> tanMap = new HashMap<>();
+    private static final Map<Double, Double> cscMap = new HashMap<>();
+    private static final Map<Double, Double> secMap = new HashMap<>();
+    private static final Map<Double, Double> cotMap = new HashMap<>();
+    private static final Map<Double, Double> log2Map = new HashMap<>();
+    private static final Map<Double, Double> log3Map = new HashMap<>();
+    private static final Map<Double, Double> log5Map = new HashMap<>();
+    private static final Map<Double, Double> log10Map = new HashMap<>();
+    private static final Map<Double, Double> lnMap = new HashMap<>();
+    private static final String prefix = "C:\\Users\\MSI\\Desktop\\reports\\ТПО\\lab-2\\TPO-2\\src\\main\\resources\\sys";
     private static final String postfix = ".csv";
-    private static List<String> paths = List.of("sysSin", "sysCos");
+    private static List<String> paths = List.of("Sin", "Cos", "Tan", "Csc", "Sec", "Cot", "Ln", "Log2", "Log3", "Log5", "Log10");
 
     @BeforeAll
     static void setMap() {
         maps.add(sinMap);
         maps.add(cosMap);
+        maps.add(tanMap);
+        maps.add(cscMap);
+        maps.add(secMap);
+        maps.add(cotMap);
+        maps.add(lnMap);
+        maps.add(log2Map);
+        maps.add(log3Map);
+        maps.add(log5Map);
+        maps.add(log10Map);
         for (int i = 0; i < maps.size(); i++) {
             String path = prefix + paths.get(i) + postfix;
             try (BufferedReader br = new BufferedReader(new FileReader(path))) {
@@ -70,8 +89,8 @@ public class SystemTest {
         }
     }
 
-    @BeforeAll
-    static void init() {
+    @BeforeEach
+    void initFunc() {
         sin = mock(Sinus.class);
         when(sin.calculate(anyDouble())).thenAnswer(invocation -> {
             double x = invocation.getArgument(0);
@@ -88,6 +107,83 @@ public class SystemTest {
                     .orElseThrow();
             return cosMap.get(closestKey);
         });
+        tan = mock(Tan.class);
+        when(tan.calculate(anyDouble())).thenAnswer(invocation -> {
+            double x = invocation.getArgument(0);
+            double closestKey = tanMap.keySet().stream()
+                    .min((k1, k2) -> Double.compare(Math.abs(k1 - x), Math.abs(k2 - x)))
+                    .orElseThrow();
+            return tanMap.get(closestKey);
+        });
+        csc = mock(Csc.class);
+        when(csc.calculate(anyDouble())).thenAnswer(invocation -> {
+            double x = invocation.getArgument(0);
+            double closestKey = cscMap.keySet().stream()
+                    .min((k1, k2) -> Double.compare(Math.abs(k1 - x), Math.abs(k2 - x)))
+                    .orElseThrow();
+            return cscMap.get(closestKey);
+        });
+        sec = mock(Sec.class);
+        when(sec.calculate(anyDouble())).thenAnswer(invocation -> {
+            double x = invocation.getArgument(0);
+            double closestKey = secMap.keySet().stream()
+                    .min((k1, k2) -> Double.compare(Math.abs(k1 - x), Math.abs(k2 - x)))
+                    .orElseThrow();
+            return secMap.get(closestKey);
+        });
+        cot = mock(Cot.class);
+        when(cot.calculate(anyDouble())).thenAnswer(invocation -> {
+            double x = invocation.getArgument(0);
+            double closestKey = cotMap.keySet().stream()
+                    .min((k1, k2) -> Double.compare(Math.abs(k1 - x), Math.abs(k2 - x)))
+                    .orElseThrow();
+            return cotMap.get(closestKey);
+        });
+        ln = mock(Ln.class);
+        when(ln.calculate(anyDouble())).thenAnswer(invocation -> {
+            double x = invocation.getArgument(0);
+            // Округляем
+            double closestKey = lnMap.keySet().stream()
+                    .min((k1, k2) -> Double.compare(Math.abs(k1 - x), Math.abs(k2 - x)))
+                    .orElseThrow();
+            return lnMap.get(closestKey);
+        });
+        log2 = mock(Log2.class);
+        when(log2.calculate(anyDouble())).thenAnswer(invocation -> {
+            double x = invocation.getArgument(0);
+            // Округляем
+            double closestKey = log2Map.keySet().stream()
+                    .min((k1, k2) -> Double.compare(Math.abs(k1 - x), Math.abs(k2 - x)))
+                    .orElseThrow();
+            return log2Map.get(closestKey);
+        });
+        log3 = mock(Log3.class);
+        when(log3.calculate(anyDouble())).thenAnswer(invocation -> {
+            double x = invocation.getArgument(0);
+            // Округляем
+            double closestKey = log3Map.keySet().stream()
+                    .min((k1, k2) -> Double.compare(Math.abs(k1 - x), Math.abs(k2 - x)))
+                    .orElseThrow();
+            return log3Map.get(closestKey);
+        });
+        log5 = mock(Log5.class);
+        when(log5.calculate(anyDouble())).thenAnswer(invocation -> {
+            double x = invocation.getArgument(0);
+            // Округляем
+            double closestKey = log5Map.keySet().stream()
+                    .min((k1, k2) -> Double.compare(Math.abs(k1 - x), Math.abs(k2 - x)))
+                    .orElseThrow();
+            return log5Map.get(closestKey);
+        });
+        log10 = mock(Log10.class);
+        when(log10.calculate(anyDouble())).thenAnswer(invocation -> {
+            double x = invocation.getArgument(0);
+            // Округляем
+            double closestKey = log10Map.keySet().stream()
+                    .min((k1, k2) -> Double.compare(Math.abs(k1 - x), Math.abs(k2 - x)))
+                    .orElseThrow();
+            return log10Map.get(closestKey);
+        });
 //        sin = mock(Sinus.class);
 //        when(sin.calculate(anyDouble())).thenAnswer(invocation -> {
 //            double x = invocation.getArgument(0);
@@ -98,51 +194,51 @@ public class SystemTest {
 //            double x = invocation.getArgument(0);
 //            return Math.cos(x);
 //        });
-        tan = mock(Tan.class);
-        when(tan.calculate(anyDouble())).thenAnswer(invocation -> {
-            double x = invocation.getArgument(0);
-            return Math.tan(x);
-        });
-        csc = mock(Csc.class);
-        when(csc.calculate(anyDouble())).thenAnswer(invocation -> {
-            double x = invocation.getArgument(0);
-            return 1 / Math.sin(x);
-        });
-        sec = mock(Sec.class);
-        when(sec.calculate(anyDouble())).thenAnswer(invocation -> {
-            double x = invocation.getArgument(0);
-            return 1 / Math.cos(x);
-        });
-        cot = mock(Cot.class);
-        when(cot.calculate(anyDouble())).thenAnswer(invocation -> {
-            double x = invocation.getArgument(0);
-            return Math.cos(x) / Math.sin(x);
-        });
-        ln = mock(Ln.class);
-        log2 = mock(Log2.class);
-        log3 = mock(Log3.class);
-        log5 = mock(Log5.class);
-        log10 = mock(Log10.class);
-        when(ln.calculate(anyDouble())).thenAnswer(invocation -> {
-            double x = invocation.getArgument(0);
-            return Math.log(x);
-        });
-        when(log10.calculate(anyDouble())).thenAnswer(invocation -> {
-            double x = invocation.getArgument(0);
-            return Math.log10(x);
-        });
-        when(log2.calculate(anyDouble())).thenAnswer(invocation -> {
-            double x = invocation.getArgument(0);
-            return Math.log(x) / Math.log(2);
-        });
-        when(log3.calculate(anyDouble())).thenAnswer(invocation -> {
-            double x = invocation.getArgument(0);
-            return Math.log(x) / Math.log(3);
-        });
-        when(log5.calculate(anyDouble())).thenAnswer(invocation -> {
-            double x = invocation.getArgument(0);
-            return Math.log(x) / Math.log(5);
-        });
+//        tan = mock(Tan.class);
+//        when(tan.calculate(anyDouble())).thenAnswer(invocation -> {
+//            double x = invocation.getArgument(0);
+//            return Math.tan(x);
+//        });
+//        csc = mock(Csc.class);
+//        when(csc.calculate(anyDouble())).thenAnswer(invocation -> {
+//            double x = invocation.getArgument(0);
+//            return 1 / Math.sin(x);
+//        });
+//        sec = mock(Sec.class);
+//        when(sec.calculate(anyDouble())).thenAnswer(invocation -> {
+//            double x = invocation.getArgument(0);
+//            return 1 / Math.cos(x);
+//        });
+//        cot = mock(Cot.class);
+//        when(cot.calculate(anyDouble())).thenAnswer(invocation -> {
+//            double x = invocation.getArgument(0);
+//            return Math.cos(x) / Math.sin(x);
+//        });
+//        ln = mock(Ln.class);
+//        log2 = mock(Log2.class);
+//        log3 = mock(Log3.class);
+//        log5 = mock(Log5.class);
+//        log10 = mock(Log10.class);
+//        when(ln.calculate(anyDouble())).thenAnswer(invocation -> {
+//            double x = invocation.getArgument(0);
+//            return Math.log(x);
+//        });
+//        when(log10.calculate(anyDouble())).thenAnswer(invocation -> {
+//            double x = invocation.getArgument(0);
+//            return Math.log10(x);
+//        });
+//        when(log2.calculate(anyDouble())).thenAnswer(invocation -> {
+//            double x = invocation.getArgument(0);
+//            return Math.log(x) / Math.log(2);
+//        });
+//        when(log3.calculate(anyDouble())).thenAnswer(invocation -> {
+//            double x = invocation.getArgument(0);
+//            return Math.log(x) / Math.log(3);
+//        });
+//        when(log5.calculate(anyDouble())).thenAnswer(invocation -> {
+//            double x = invocation.getArgument(0);
+//            return Math.log(x) / Math.log(5);
+//        });
 
     }
 
@@ -153,6 +249,7 @@ public class SystemTest {
         } else {
             res = (((((log10.calculate(x) / log5.calculate(x)) - (log3.calculate(x) + log5.calculate(x))) + ln.calculate(x)) - (log10.calculate(x) - log2.calculate(x))) / (log5.calculate(x) / (log3.calculate(x) - log5.calculate(x))));
         }
+        if (Math.abs(res) < 1e-3) return 0;
         return res;
     }
 
@@ -165,7 +262,30 @@ public class SystemTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/system.csv")
-    void testSystemMock(double x, double y) {
+    void testSystemMockAll(double x, double y) {
+        assertEquals(y, resultSystem(x), delta);
+    }
+
+    @ParameterizedTest
+    @CsvFileSource(resources = "/system.csv")
+    void testSystemMockTrig(double x, double y) {
+        ln = new Ln();
+        log2 = new Log2();
+        log3 = new Log3();
+        log5 = new Log5();
+        log10 = new Log10();
+        assertEquals(y, resultSystem(x), delta);
+    }
+
+    @ParameterizedTest
+    @CsvFileSource(resources = "/system.csv")
+    void testSystemMockLog(double x, double y) {
+        cos = new Cosine();
+        sin = new Sinus();
+        tan = new Tan();
+        cot = new Cot();
+        csc = new Csc();
+        sec = new Sec();
         assertEquals(y, resultSystem(x), delta);
     }
 
